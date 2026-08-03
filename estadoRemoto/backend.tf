@@ -1,6 +1,6 @@
 terraform {
   backend "azurerm" {
-    storage_account_name = "estadosterraformamin"
+    storage_account_name = "estadosterraformmatidb"
     container_name       = "states"
     key                  = "estados.tfstate"
   }
