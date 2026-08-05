@@ -19,11 +19,11 @@ resource "azurerm_storage_account" "storage" {
 resource "azurerm_storage_container" "container_cordoba" {
   name                  = "platzicordoba"
   storage_account_id    = azurerm_storage_account.storage.id
-  container_access_type = "container"
+  container_access_type = "private"
 }
 
 resource "azurerm_storage_container" "container_ruben" {
   name                  = "ruben123"
   storage_account_id    = azurerm_storage_account.storage.id
-  container_access_type = "container"
+  container_access_type = "private"
 }
