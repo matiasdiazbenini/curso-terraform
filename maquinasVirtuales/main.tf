@@ -4,28 +4,28 @@ resource "azurerm_resource_group" "rg" {
 }
 
 resource "azurerm_virtual_network" "my_terraform_network" {
-  name                = "amines-vnet"
+  name                = "matidb-vnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 }
 
 resource "azurerm_subnet" "my_terraform_subnet" {
-  name                 = "amines-subnet"
+  name                 = "matidb-subnet"
   resource_group_name  = azurerm_resource_group.rg.name
   virtual_network_name = azurerm_virtual_network.my_terraform_network.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
 resource "azurerm_public_ip" "my_terraform_public_ip" {
-  name                = "amines-public-ip"
+  name                = "matidb-public-ip"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
 }
 
 resource "azurerm_network_security_group" "my_terraform_nsg" {
-  name                = "amines-nsg"
+  name                = "matidb-nsg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -43,7 +43,7 @@ resource "azurerm_network_security_group" "my_terraform_nsg" {
 }
 
 resource "azurerm_network_interface" "my_terraform_nic" {
-  name                = "amines-nic"
+  name                = "matidb-nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -61,13 +61,13 @@ resource "azurerm_network_interface_security_group_association" "nic_association
 }
 
 resource "azurerm_windows_virtual_machine" "main" {
-  name                  = "amines-vm"
+  name                  = "matidb-vm"
   admin_username        = var.vm_username
   admin_password        = var.vm_password
   location              = azurerm_resource_group.rg.location
   resource_group_name   = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
-  size                  = "Standard_DS1_v2"
+  size                  = "Standard_B2ats_v2"
 
   os_disk {
     name                 = "myOsDisk"
@@ -84,7 +84,7 @@ resource "azurerm_windows_virtual_machine" "main" {
 }
 
 resource "azurerm_virtual_machine_extension" "web_server_install" {
-  name                       = "amines-wsi"
+  name                       = "matidb-wsi"
   virtual_machine_id         = azurerm_windows_virtual_machine.main.id
   publisher                  = "Microsoft.Compute"
   type                       = "CustomScriptExtension"

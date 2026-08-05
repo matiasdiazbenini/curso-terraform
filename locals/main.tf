@@ -1,6 +1,6 @@
 provider "azurerm" {
   features {}
-  subscription_id = "30a83aff-7a8b-4ca3-aa48-ab93268b5a8b"
+  subscription_id = "d36f499a-c545-4ff2-9ed5-457395f021c0"
 }
 
 variable "rg_nombre" {
@@ -8,10 +8,10 @@ variable "rg_nombre" {
 }
 
 locals {
-  group_name = "amines${var.rg_nombre}"
+  group_name = "matidb${var.rg_nombre}"
 }
 
 resource "azurerm_resource_group" "rg" {
-  location = "mexicocentral"
+  location = "northcentralus"
   name     = local.group_name
 }

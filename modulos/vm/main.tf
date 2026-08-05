@@ -1,5 +1,5 @@
 resource "azurerm_network_interface" "my_terraform_nic" {
-  name                = "amines-nic"
+  name                = "matidb-nic"
   location            = var.location
   resource_group_name = var.resource_group_name
 
@@ -17,13 +17,13 @@ resource "azurerm_network_interface_security_group_association" "nic_association
 }
 
 resource "azurerm_windows_virtual_machine" "main" {
-  name                  = "amines-vm"
+  name                  = "matidb-vm"
   admin_username        = var.vm_username
   admin_password        = var.vm_password
   location              = var.location
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.my_terraform_nic.id]
-  size                  = "Standard_DS1_v2"
+  size                  = "Standard_B2ats_v2"
 
   os_disk {
     name                 = "myOsDisk"

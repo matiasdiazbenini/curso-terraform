@@ -1,5 +1,5 @@
 resource "azurerm_network_security_group" "my_terraform_nsg" {
-  name                = "amines-nsg"
+  name                = "matidb-nsg"
   location            = var.location
   resource_group_name = var.resource_group_name
 
