@@ -16,14 +16,8 @@ resource "azurerm_storage_account" "storage" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_container" "container_mati" {
-  name                  = "platzicba-mati"
-  storage_account_id    = azurerm_storage_account.storage.id
-  container_access_type = "container"
-}
-
-resource "azurerm_storage_container" "container_oscar" {
-  name                  = "oscarbarajas"
+resource "azurerm_storage_container" "container_cordoba" {
+  name                  = "platzicordoba"
   storage_account_id    = azurerm_storage_account.storage.id
   container_access_type = "container"
 }
