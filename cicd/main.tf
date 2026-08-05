@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg" {
-  name     = "cicd-group"
+  name     = "cicd-group-mati"
   location = "northcentralus"
 }
 
